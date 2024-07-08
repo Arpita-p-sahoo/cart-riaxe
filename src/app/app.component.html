@@ -1,44 +1,6 @@
-<div class="container mx-auto p-4" *ngIf="!secondpart">
-  <div class="space-y-4">
-    <div *ngFor="let item of groceryItems" class="flex bg-white p-4 rounded-lg shadow-md items-center">
-      <img [src]="item.image" alt="{{item.name}}" class="w-32 h-32 object-cover rounded-lg mr-4">
-      <div class="flex-1">
-        <h2 class="text-xl font-semibold mb-1">{{item.name}}</h2>
-        <span class="text-lg font-bold">{{item.price.toFixed(2)}}</span>
-        <p class="text-gray-600 mb-2">{{item.description}}</p>
-      </div>
-      <div class="flex items-center space-x-2">
-        <button (click)="decreaseQuantity(item)" class="bg-red-500 text-white px-2 py-1 rounded-lg">-</button>
-        <span>{{item.quantity}}</span>
-        <button (click)="increaseQuantity(item)" class="bg-green-500 text-white px-2 py-1 rounded-lg">+</button>
-      </div>
-    </div>
-  </div>
-<div>
-  <span class="text-lg font-bold">Total Price: {{getTotalPrice().toFixed(2)}}</span>
-  <button class="bg-green-500 text-white px-4 py-2 rounded-lg" (click)="view()">View</button>
+<div class="icon-container" *ngIf="currentIcon" [@carouselAnimation]="iconState">
+  <mat-icon>{{ currentIcon }}</mat-icon>
 </div>
-</div>
-
-<div class="container mx-auto p-4" *ngIf="secondpart">
-  <button class="bg-blue-500 text-white px-4 py-2 rounded-lg" (click)="view()">Back</button>
-
-  <div class="space-y-4">
-    <div *ngFor="let item of groceryItems" class="flex bg-white p-4 rounded-lg shadow-md items-center">
-      <div class="flex-1">
-        <h2 class="text-xl font-semibold mb-1">{{item.name}}</h2>
-        <p class="text-gray-600 mb-2">{{item.description}}</p>
-      </div>
-      <div class="flex items-center space-x-2">
-        <span class="text-lg font-bold">{{item.price.toFixed(2)}}</span>
-        <span class="mx-2">*</span>
-        <input type="number" min="1" [(ngModel)]="item.quantity" (input)="updateQuantity(item, $event)" class="w-16 h-8 border-gray-300 border rounded-md text-center">
-        <span class="ml-2">{{Total(item).toFixed(2)}}</span>
-      </div>
-      
-    </div>
-  </div>
-  <h1 class="text-3xl">Total Price: {{getTotalPrice().toFixed(2)}}</h1>
-
-</div>
-
+<button mat-fab aria-label="Example icon button with a delete icon" >
+  <mat-icon *ngIf="currentIcon" [@carouselAnimation]="iconState">{{ currentIcon }}</mat-icon>
+</button>
